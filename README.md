@@ -11,9 +11,11 @@
 
 ## 📘 프로젝트 개요
 
-1. 아이템 시뮬레이터 서비스 ERD  
+1. 아이템 시뮬레이터 서비스 ERD
+
    ![아이템 시뮬레이터 서비스 ERD](https://github.com/mimihimesama/nodejs-skillful/assets/106059492/e2b8f9f3-7439-4fb9-9a94-c616a748aa33)
-2. [API 명세서](https://chiseled-approval-5a0.notion.site/Node-js-a28348f1f000442c8a5920873c4d6df7)
+
+2. [**API 명세서**](https://chiseled-approval-5a0.notion.site/Node-js-a28348f1f000442c8a5920873c4d6df7)
 
 ## 🖊️ 프로젝트 회고
 
