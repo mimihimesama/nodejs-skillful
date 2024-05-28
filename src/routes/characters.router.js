@@ -1,6 +1,7 @@
 import express from "express";
 import { prisma } from "../utils/prisma/index.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -80,10 +81,10 @@ router.delete("/characters/:characterId", authMiddleware, async (req, res, next)
 });
 
 /* 캐릭터 상세 조회 API */
-router.get("/characters/:characterId", authMiddleware, async (req, res, next) => {
+router.get("/characters/:characterId", async (req, res, next) => {
   try {
     const { characterId } = req.params;
-    const { userId } = req.user;
+    const authorization = req.header("authorization");
 
     const character = await prisma.characters.findFirst({
       where: { characterId: +characterId },
@@ -93,22 +94,33 @@ router.get("/characters/:characterId", authMiddleware, async (req, res, next) =>
       return res.status(404).json({ errorMessage: "캐릭터를 찾을 수 없습니다." });
     }
 
-    if (character.userId === userId) {
-      // 내가 내 캐릭터를 조회하는 경우
-      return res.status(200).json({
-        name: character.name,
-        health: character.health,
-        power: character.power,
-        money: character.money,
-      });
-    } else {
-      // 로그인 하지 않았거나 다른 유저가 내 캐릭터를 조회하는 경우
-      return res.status(200).json({
-        name: character.name,
-        health: character.health,
-        power: character.power,
-      });
+    // 내가 내 캐릭터를 조회하는 경우
+    if (authorization) {
+      const [tokenType, token] = authorization.split(" ");
+      if (tokenType !== "Bearer") throw new Error("토큰 타입이 일치하지 않습니다.");
+
+      const decodedToken = jwt.verify(token, process.env.SESSION_SECRET_KEY);
+      const userId = decodedToken.userId;
+
+      const user = await prisma.users.findFirst({ where: { userId: +userId } });
+      if (!user) throw new Error("토큰 사용자가 존재하지 않습니다.");
+
+      if (character.userId === userId) {
+        return res.status(200).json({
+          name: character.name,
+          health: character.health,
+          power: character.power,
+          money: character.money,
+        });
+      }
     }
+
+    // 로그인 하지 않았거나 다른 유저가 내 캐릭터를 조회하는 경우
+    return res.status(200).json({
+      name: character.name,
+      health: character.health,
+      power: character.power,
+    });
   } catch (err) {
     next(err);
   }
