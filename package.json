@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-skillful",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mimihimesama/nodejs-skillful.git",
+  "author": "mimihimesama <gwa446@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.14.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.1",
+    "prettier": "^3.2.5"
+  }
+}
