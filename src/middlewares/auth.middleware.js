@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { prisma } from "../utils/prisma/index.js";
+import { userPrisma } from "../utils/prisma/index.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +15,7 @@ export default async function (req, res, next) {
     const decodedToken = jwt.verify(token, process.env.SESSION_SECRET_KEY);
     const userId = decodedToken.userId;
 
-    const user = await prisma.users.findFirst({ where: { userId: +userId } });
+    const user = await userPrisma.users.findFirst({ where: { userId: +userId } });
     if (!user) throw new Error("토큰 사용자가 존재하지 않습니다.");
 
     // req.user에 사용자 정보를 저장합니다.

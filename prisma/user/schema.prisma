@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output = "./generated/userDataClient"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource userdb {
+  provider = "mysql"
+  url      = env("USER_DATABASE_URL")
+}
+
+model Users {
+  userId    Int      @id @default(autoincrement()) @map("userId")
+  email     String   @unique @map("email")
+  password  String   @map("password")
+  name      String   @unique @map("name")
+
+  characters Characters[]
+
+  @@map("Users")
+}
+
+model Characters {
+  characterId  Int    @id @default(autoincrement()) @map("characterId")
+  userId       Int    @map("userId")
+  name         String @unique @map("name")
+  health       Int    @default(500) @map("health")
+  power        Int    @default(100) @map("power")
+  money        Int    @default(10000) @map("money")
+
+  user Users @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  inventory  Inventory[]
+  equip      Equip[]
+
+  @@map("Characters")
+}
+
+model Inventory {
+  inventoryId  Int   @id @default(autoincrement()) @map("inventoryId")
+  characterId  Int   @map("characterId")
+  item_code    Int   @map("item_code")
+  count        Int   @map("count")
+
+  character Characters @relation(fields: [characterId], references: [characterId], onDelete: Cascade)
+
+  @@map("Inventory")
+}
+
+model Equip {
+  equipId      Int   @id @default(autoincrement()) @map("equipId")
+  characterId  Int   @map("characterid")
+  item_code    Int   @map("item_code")
+
+  character Characters @relation(fields: [characterId], references: [characterId], onDelete: Cascade)
+
+  @@map("Equip")
+}

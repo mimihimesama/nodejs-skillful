@@ -1,5 +1,5 @@
 import express from "express";
-import { prisma } from "../utils/prisma/index.js";
+import { userPrisma } from "../utils/prisma/index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -25,7 +25,7 @@ router.post("/sign-up", async (req, res, next) => {
       return res.status(400).json({ errorMessage: "비밀번호가 일치하지 않습니다." });
     }
 
-    const isExistUser = await prisma.users.findFirst({
+    const isExistUser = await userPrisma.users.findFirst({
       where: {
         email,
       },
@@ -37,7 +37,7 @@ router.post("/sign-up", async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await prisma.users.create({
+    await userPrisma.users.create({
       data: {
         email,
         password: hashedPassword,
@@ -56,7 +56,7 @@ router.post("/sign-in", async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const user = await prisma.users.findFirst({ where: { email } });
+    const user = await userPrisma.users.findFirst({ where: { email } });
     if (!user) return res.status(401).json({ errorMessage: "존재하지 않는 아이디입니다." });
     else if (!(await bcrypt.compare(password, user.password))) return res.status(401).json({ errorMessage: "비밀번호가 일치하지 않습니다." });
 

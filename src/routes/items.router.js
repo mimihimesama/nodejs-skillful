@@ -1,5 +1,5 @@
 import express from "express";
-import { prisma } from "../utils/prisma/index.js";
+import { gamePrisma } from "../utils/prisma/index.js";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.post("/items", async (req, res, next) => {
   try {
     const { item_code, item_name, item_stat, item_price } = req.body;
 
-    const isExistItem = await prisma.items.findFirst({
+    const isExistItem = await gamePrisma.items.findFirst({
       where: {
         item_name,
       },
@@ -41,7 +41,7 @@ router.post("/items", async (req, res, next) => {
       }
     }
 
-    await prisma.items.create({
+    await gamePrisma.items.create({
       data: {
         item_code,
         item_name,
@@ -64,7 +64,7 @@ router.patch("/items/:itemCode", async (req, res, next) => {
     const { itemCode } = req.params;
     const { item_name, item_stat } = req.body;
 
-    const item = await prisma.items.findFirst({
+    const item = await gamePrisma.items.findFirst({
       where: {
         item_code: +itemCode,
       },
@@ -96,7 +96,7 @@ router.patch("/items/:itemCode", async (req, res, next) => {
     if (item_name) updateData.item_name = item_name;
     if (item_stat) updateData.item_stat = item_stat;
 
-    const updatedItem = await prisma.items.update({
+    const updatedItem = await gamePrisma.items.update({
       where: {
         item_code: +itemCode,
       },
@@ -119,7 +119,7 @@ router.patch("/items/:itemCode", async (req, res, next) => {
 /* 아이템 목록 조회 API */
 router.get("/items", async (req, res, next) => {
   try {
-    const items = await prisma.items.findMany({
+    const items = await gamePrisma.items.findMany({
       select: {
         item_code: true,
         item_name: true,
@@ -141,7 +141,7 @@ router.get("/items/:itemCode", async (req, res, next) => {
   try {
     const { itemCode } = req.params;
 
-    const item = await prisma.items.findFirst({
+    const item = await gamePrisma.items.findFirst({
       where: {
         item_code: +itemCode,
       },
