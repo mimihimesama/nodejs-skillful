@@ -68,9 +68,7 @@ router.post("/sign-in", async (req, res, next) => {
       { expiresIn: "1d" },
     );
 
-    res.setHeader("authorization", `Bearer ${token}`);
-
-    return res.status(200).json({ message: "로그인 성공" });
+    return res.status(200).json({ message: "로그인 성공", accessToken: token });
   } catch (err) {
     next(err);
   }
