@@ -18,7 +18,7 @@ datasource gamedb {
 model Items {
   item_code  Int    @id @map("item_code")
   item_name  String @unique @map("item_name")
-  item_stat  Json?  @map("item_stat")
+  item_stat  Json   @map("item_stat")
   item_price Int    @map("iitem_pricetenId")
 
   @@map("Items")

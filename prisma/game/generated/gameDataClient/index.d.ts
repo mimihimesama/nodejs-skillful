@@ -1036,7 +1036,7 @@ export namespace Prisma {
   export type ItemsGroupByOutputType = {
     item_code: number
     item_name: string
-    item_stat: JsonValue | null
+    item_stat: JsonValue
     item_price: number
     _count: ItemsCountAggregateOutputType | null
     _avg: ItemsAvgAggregateOutputType | null
@@ -1081,7 +1081,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       item_code: number
       item_name: string
-      item_stat: Prisma.JsonValue | null
+      item_stat: Prisma.JsonValue
       item_price: number
     }, ExtArgs["result"]["items"]>
     composites: {}
@@ -1786,12 +1786,11 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const NullableJsonNullValueInput: {
-    DbNull: typeof DbNull,
+  export const JsonNullValueInput: {
     JsonNull: typeof JsonNull
   };
 
-  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const JsonNullValueFilter: {
@@ -1801,14 +1800,6 @@ export namespace Prisma {
   };
 
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -1853,14 +1844,14 @@ export namespace Prisma {
     NOT?: ItemsWhereInput | ItemsWhereInput[]
     item_code?: IntFilter<"Items"> | number
     item_name?: StringFilter<"Items"> | string
-    item_stat?: JsonNullableFilter<"Items">
+    item_stat?: JsonFilter<"Items">
     item_price?: IntFilter<"Items"> | number
   }
 
   export type ItemsOrderByWithRelationInput = {
     item_code?: SortOrder
     item_name?: SortOrder
-    item_stat?: SortOrderInput | SortOrder
+    item_stat?: SortOrder
     item_price?: SortOrder
   }
 
@@ -1870,14 +1861,14 @@ export namespace Prisma {
     AND?: ItemsWhereInput | ItemsWhereInput[]
     OR?: ItemsWhereInput[]
     NOT?: ItemsWhereInput | ItemsWhereInput[]
-    item_stat?: JsonNullableFilter<"Items">
+    item_stat?: JsonFilter<"Items">
     item_price?: IntFilter<"Items"> | number
   }, "item_code" | "item_name">
 
   export type ItemsOrderByWithAggregationInput = {
     item_code?: SortOrder
     item_name?: SortOrder
-    item_stat?: SortOrderInput | SortOrder
+    item_stat?: SortOrder
     item_price?: SortOrder
     _count?: ItemsCountOrderByAggregateInput
     _avg?: ItemsAvgOrderByAggregateInput
@@ -1892,56 +1883,56 @@ export namespace Prisma {
     NOT?: ItemsScalarWhereWithAggregatesInput | ItemsScalarWhereWithAggregatesInput[]
     item_code?: IntWithAggregatesFilter<"Items"> | number
     item_name?: StringWithAggregatesFilter<"Items"> | string
-    item_stat?: JsonNullableWithAggregatesFilter<"Items">
+    item_stat?: JsonWithAggregatesFilter<"Items">
     item_price?: IntWithAggregatesFilter<"Items"> | number
   }
 
   export type ItemsCreateInput = {
     item_code: number
     item_name: string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat: JsonNullValueInput | InputJsonValue
     item_price: number
   }
 
   export type ItemsUncheckedCreateInput = {
     item_code: number
     item_name: string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat: JsonNullValueInput | InputJsonValue
     item_price: number
   }
 
   export type ItemsUpdateInput = {
     item_code?: IntFieldUpdateOperationsInput | number
     item_name?: StringFieldUpdateOperationsInput | string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat?: JsonNullValueInput | InputJsonValue
     item_price?: IntFieldUpdateOperationsInput | number
   }
 
   export type ItemsUncheckedUpdateInput = {
     item_code?: IntFieldUpdateOperationsInput | number
     item_name?: StringFieldUpdateOperationsInput | string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat?: JsonNullValueInput | InputJsonValue
     item_price?: IntFieldUpdateOperationsInput | number
   }
 
   export type ItemsCreateManyInput = {
     item_code: number
     item_name: string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat: JsonNullValueInput | InputJsonValue
     item_price: number
   }
 
   export type ItemsUpdateManyMutationInput = {
     item_code?: IntFieldUpdateOperationsInput | number
     item_name?: StringFieldUpdateOperationsInput | string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat?: JsonNullValueInput | InputJsonValue
     item_price?: IntFieldUpdateOperationsInput | number
   }
 
   export type ItemsUncheckedUpdateManyInput = {
     item_code?: IntFieldUpdateOperationsInput | number
     item_name?: StringFieldUpdateOperationsInput | string
-    item_stat?: NullableJsonNullValueInput | InputJsonValue
+    item_stat?: JsonNullValueInput | InputJsonValue
     item_price?: IntFieldUpdateOperationsInput | number
   }
 
@@ -1969,14 +1960,14 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
   }
-  export type JsonNullableFilter<$PrismaModel = never> = 
+  export type JsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
       >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
+  export type JsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string
     string_contains?: string | StringFieldRefInput<$PrismaModel>
@@ -1990,11 +1981,6 @@ export namespace Prisma {
     gt?: InputJsonValue
     gte?: InputJsonValue
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type ItemsCountOrderByAggregateInput = {
@@ -2058,14 +2044,14 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+  export type JsonWithAggregatesFilter<$PrismaModel = never> = 
     | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
       >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string
     string_contains?: string | StringFieldRefInput<$PrismaModel>
@@ -2079,9 +2065,9 @@ export namespace Prisma {
     gt?: InputJsonValue
     gte?: InputJsonValue
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2164,25 +2150,14 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> = 
+  export type NestedJsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
       >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string
     string_contains?: string | StringFieldRefInput<$PrismaModel>

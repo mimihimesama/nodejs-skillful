@@ -99,8 +99,7 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.NullableJsonNullValueInput = {
-  DbNull: Prisma.DbNull,
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -108,11 +107,6 @@ exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 
@@ -151,7 +145,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
   "clientVersion": "5.14.0",
@@ -168,13 +162,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"./generated/gameDataClient\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource gamedb {\n  provider = \"mysql\"\n  url      = env(\"GAME_DATABASE_URL\")\n}\n\nmodel Items {\n  item_code  Int    @id @map(\"item_code\")\n  item_name  String @unique @map(\"item_name\")\n  item_stat  Json?  @map(\"item_stat\")\n  item_price Int    @map(\"iitem_pricetenId\")\n\n  @@map(\"Items\")\n}\n",
-  "inlineSchemaHash": "719475e4abadbd0d543cf29cef818d40adcab3de67120ffbefc9041a3cd0b6ea",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"./generated/gameDataClient\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource gamedb {\n  provider = \"mysql\"\n  url      = env(\"GAME_DATABASE_URL\")\n}\n\nmodel Items {\n  item_code  Int    @id @map(\"item_code\")\n  item_name  String @unique @map(\"item_name\")\n  item_stat  Json   @map(\"item_stat\")\n  item_price Int    @map(\"iitem_pricetenId\")\n\n  @@map(\"Items\")\n}\n",
+  "inlineSchemaHash": "ab50100db9f2d148d13714726ee3006c440e0bf71d465dde063992ed2eeb2de6",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Items\":{\"dbName\":\"Items\",\"fields\":[{\"name\":\"item_code\",\"dbName\":\"item_code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"item_name\",\"dbName\":\"item_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"item_stat\",\"dbName\":\"item_stat\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"item_price\",\"dbName\":\"iitem_pricetenId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Items\":{\"dbName\":\"Items\",\"fields\":[{\"name\":\"item_code\",\"dbName\":\"item_code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"item_name\",\"dbName\":\"item_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"item_stat\",\"dbName\":\"item_stat\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"item_price\",\"dbName\":\"iitem_pricetenId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 
